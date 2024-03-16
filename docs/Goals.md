@@ -1,0 +1,1 @@
+Rate each album in my record collection on a five star rating where one star is the worst.
