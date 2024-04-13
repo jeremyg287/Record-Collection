@@ -1,3 +1,10 @@
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+}
 .header {
     display: flex;
     justify-content: center;
@@ -6,4 +13,75 @@
 }
 button {
     cursor: pointer;
+}
+.album-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-grow: 1;
+
+}
+.album-list .album{
+    display: grid;
+    grid-template: "container";
+    place-items: stretch;
+    place-content: stretch;
+    overflow: hidden;
+    max-height: clamp(450px, 50vh, 600px);   
+}
+.album-list .album > * {
+    grid-area: container;
+    max-width: 1000px;
+}
+.album-list .album > img {
+    /* width: 100%;
+    height: auto; */
+    object-fit: cover;
+    z-index: -100;
+}
+.album-list .album .album-metadata {
+    background: radial-gradient(white, rgba(255,255,255,.1));
+    display: none;
+} 
+.album-list .album:hover .album-metadata {
+    display: flex;
+    object-fit: cover;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.header-line {
+    --distance-hole: 2px;
+    --distance-label: 10px;
+    --distance-edge: 27px;
+    --label-color: #488ebd;
+    --record-color: black;
+    background: radial-gradient(
+        ellipse, 
+        transparent, 
+        transparent var(--distance-hole), 
+        var(--label-color) var(--distance-hole), 
+        var(--label-color) var(--distance-label),
+        var(--record-color) var(--distance-label), 
+        var(--record-color) var(--distance-edge), 
+        transparent var(--distance-edge)
+    );
+    background-size: 60px 60px;
+    height: 60px;
+}
+.content {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+.side-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
+    flex-basis: 100px;
 }

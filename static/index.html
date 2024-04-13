@@ -1,6 +1,8 @@
 <html>
     <head>
         <link rel="stylesheet" href="main.css"/>
+        <title>Jeremy's Record Collection</title>
+        <script src="main.js"></script>
     </head>
     <body>
         <div class="header ">
@@ -14,13 +16,40 @@
                 </button>
             </div>
         </div>
-        <ul>
-            <li class="album">
-                <p class="album-name"> Dookie </p>
-                <p class="album-artist"> Green Day </p>
-                <p class="album-rating rating-5"> Five Stars </p>
-                <img src="https://i.ebayimg.com/images/g/Za8AAOSwnEBkukX8/s-l1600.jpg" width="500" height="500" />
-            </li>
-        </ul>
+        <p class="header-line">
+            &nbsp;
+        </p>
+        <div class="content">
+            <div class="side-bar">
+                <button name="sort-by-rating">Rating</button>
+                <button name="sort-by-title">Title</button>
+            </div>
+            <ul class="album-list">
+                <li class="album" data-rating="5">
+                    <div class="album-metadata">
+                        <p class="album-name"> King Of The Beach </p>
+                        <p class="album-artist"> Wavves </p>
+                        <p class="album-rating rating-5"> Five Stars </p>
+                    </div>
+                    <img src="https://vinylcoverart.com/media/album-covers/635/wavves-king-of-the-beach-large.jpg" width="500" height="500" />
+                </li>
+                <li class="album" data-rating="4.5">
+                    <div class="album-metadata">
+                        <p class="album-name"> Dookie </p>
+                        <p class="album-artist"> Green Day </p>
+                        <p class="album-rating rating-4-5"> 4.5 Stars </p>
+                    </div>
+                    <img src="https://i.ebayimg.com/images/g/Za8AAOSwnEBkukX8/s-l1600.jpg" width="500" height="500" />
+                </li>
+                <li class="album" data-rating="6">
+                    <div class="album-metadata">
+                        <p class="album-name"> Melted </p>
+                        <p class="album-artist"> Ty Segall </p>
+                        <p class="album-rating rating-6"> Six Stars </p>
+                    </div>
+                    <img src="https://m.media-amazon.com/images/I/81+LnwyO1rL._SL1400_.jpg" width="500" height="500" />
+                </li>
+            </ul>
+        </div>
     </body>
 </html>
