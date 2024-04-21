@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { AlbumCollection, AlbumData } from "./components/album-collection";
+import { AlbumCollection, AlbumData, Header } from "./components/album-collection";
+import { Layout } from "./components/layout";
 
 const myAlbums : AlbumData[] = [
   {
@@ -53,8 +54,9 @@ const myAlbums : AlbumData[] = [
 ]
 
 export default function App() {
+  const albums = <AlbumCollection albums={myAlbums}/>
+  const albumButtons: JSX.Element[] = []
   return (<main>
-    
-    <AlbumCollection albums={myAlbums}/>
+    <Layout content={albums} sideBarButtons={albumButtons}/>
   </main> );
 }
