@@ -1,14 +1,28 @@
-export function AlbumCollection(props : any){
+export type ImageObject = {
+    url: string,
+    height?: number,
+    width?: number
+}
+export type SimpleAlbum = {
+    name: string,
+    artists: string[],
+    images: ImageObject[],
+    rating?: 1|2|3|4|5
+}
+export type AlbumCollectionProps = {
+    albums: SimpleAlbum[]
+}
+export function AlbumCollection(props : AlbumCollectionProps){
     const {albums} = props
     return (
         <ul className="album-list">
             {
-                albums.map((album:AlbumData)=>{
-                    return <Album
+                albums.map((album:SimpleAlbum)=>{
+                    return <Album key={album.name}
                         name={album.name} 
                         rating={album.rating}
-                        artist={album.artist}
-                        image={album.image}
+                        artist={album.artists[0]}
+                        image={album.images[0].url}
                     />
                 })
             }
@@ -17,7 +31,7 @@ export function AlbumCollection(props : any){
 }
 export type AlbumData = {
     name: string,
-    rating: "One Star" | "Two Stars" | "Three Stars" | "Four Stars" | "Five Stars",
+    rating?: 1 | 2 | 3 | 4 | 5,
     artist: string,
     image: string,
     asdf?: string,

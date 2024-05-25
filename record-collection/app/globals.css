@@ -58,6 +58,7 @@ button {
   align-items: center;
   flex-wrap: wrap;
   flex-grow: 1;
+  overflow-y: auto;
 }
 .album-list .album{
   display: grid;
@@ -119,8 +120,13 @@ button {
   flex-direction: column;
   justify-content: space-around;
   align-items: stretch;
-  flex-basis: 100px;
+  flex-basis: 125px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  margin-right: -125px;
+  background: rgba(255, 255, 255, 0.8);
 }
+
 .hz-buttons button {
   border: 1px solid black;
   color: black;
@@ -149,4 +155,20 @@ button {
 }
 .hz-buttons button:last-child {
   border-radius:0 5px 5px 0;
+}
+
+.side-bar-and-content {
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 1;
+  flex-grow: 1;
+  flex-basis: 0;
+  overflow: hidden;
+}
+
+.primary-layout {
+  height: 100vh;
+  overflow: hidden;
+  flex-direction: column;
+  display: flex;
 }

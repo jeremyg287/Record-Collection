@@ -2,7 +2,7 @@ export function Layout (props: LayoutParams){
 
     return <div className="primary-layout">
         <Header/>
-        <div className="side-bar-add-content">
+        <div className="side-bar-and-content">
             <div className="side-bar">
                 {
                     props.sideBarButtons
