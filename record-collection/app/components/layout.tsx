@@ -24,7 +24,7 @@ export function Header(props: any) {
     return (
     <div className="header ">
 
-           <h1>Jeremy's Record Collection</h1>
+           <h1>Jeremy&apos;s Record Collection</h1>
             <div className="hz-buttons">
                 <button type="button">
                     Artists

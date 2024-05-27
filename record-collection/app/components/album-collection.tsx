@@ -1,3 +1,7 @@
+import React from "react"
+
+import Image from "next/image"
+
 export type ImageObject = {
     url: string,
     height?: number,
@@ -45,7 +49,7 @@ function Album(props : AlbumData) {
                 <p className="album-artist"> {artist} </p>
                 <p className="album-rating rating-5"> {rating} </p>
             </div>
-            <img src={image} width="500" height="500" />
+            <Image alt={`album cover for ${name}`} src={image} width="500" height="500" />
         </li>
     )
 }
