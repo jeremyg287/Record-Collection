@@ -11,6 +11,7 @@ type SortProps <T> = {
 export function SortByRating (props : SortProps<SimpleAlbum>) : JSX.Element {
     const [sortDirection, setSortDirection] = useState(true)
     const sort = () => {
+        console.log("sort by rating", sortDirection)
 
         const sortedData = props.data.toSorted ((a, b) : number => {
             if (sortDirection){
@@ -22,12 +23,12 @@ export function SortByRating (props : SortProps<SimpleAlbum>) : JSX.Element {
         setSortDirection(!sortDirection)
         props.setData(sortedData)
     }
-    return <button onClick = {sort}>Sort by rating</button> 
+    return <input type="button" onClick={sort} value="Sort by rating"/> 
 }
 export function SortByName (props : SortProps<SimpleAlbum>) : JSX.Element {
     const [sortDirection, setSortDirection] = useState(true)
     const sort = () => {
-
+        console.log("sort by name", sortDirection)
         const sortedData = props.data.toSorted ((a, b) : number => {
             if (sortDirection){
                 return a.name.localeCompare(b.name)
@@ -38,5 +39,5 @@ export function SortByName (props : SortProps<SimpleAlbum>) : JSX.Element {
         setSortDirection(!sortDirection)
         props.setData(sortedData)
     }
-    return <button onClick = {sort}>Sort by name</button>
+    return <input type="button" onClick={sort} value="Sort by name"/>
 }
