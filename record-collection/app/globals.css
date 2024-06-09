@@ -173,3 +173,14 @@ button {
   flex-direction: column;
   display: flex;
 }
+
+.page-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-controls .page-number {
+  margin-left: 1em;
+  margin-right: 1em;
+}

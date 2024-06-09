@@ -4,15 +4,26 @@ import { AlbumCollection, AlbumData, SimpleAlbum, } from "./components/album-col
 import { Layout } from "./components/layout";
 import { useState } from "react";
 import { SortByName, SortByRating } from "./components/sort-buttons";
-import { AlbumManager } from "./data/albums";
+import { AlbumManager, useDefaultManager } from "./data/albums";
+import { PageControl } from "./components/pageControls";
 
 
 export default function App() {
-  const myAlbums =  new AlbumManager()
-  const albumCollection = <AlbumCollection albums={myAlbums.getPage(0)}/>
+  const myAlbums =  useDefaultManager()
+  const albumCollection = <AlbumCollection albums={myAlbums.getPage()}/>
   const albumButtons: JSX.Element[]=[
     <SortByRating key={0} data={myAlbums.sourceList} setData={myAlbums.setSourceList}/>, 
-    <SortByName key={1} data={myAlbums.sourceList} setData={myAlbums.setSourceList}/>
+    <SortByName key={1} data={myAlbums.sourceList} setData={myAlbums.setSourceList}/>,
+    <PageControl 
+      key={2} 
+      currentPage={myAlbums.displayPage} 
+      goToNextPage={myAlbums.goToNextPage}
+      goToPreviousPage={myAlbums.goToPreviousPage}
+      isFirstPage={myAlbums.isFirstPage}
+      isLastPage={myAlbums.isLastPage}
+    />,
+
+
   ]
   return (<main>
     <Layout content={albumCollection} sideBarButtons={albumButtons}/>
