@@ -7,7 +7,7 @@ export class AlbumManager {
     setPage: Dispatch<SetStateAction<number>>
     sourceList: SimpleAlbum[]
     setSourceList : Dispatch<SetStateAction<SimpleAlbum[]>>
-    pageSize : number = 20
+    pageSize : number = 5
     constructor(albums : SimpleAlbum[], setAlbums : Dispatch<SetStateAction<SimpleAlbum[]>>, page : number, setPage: Dispatch<SetStateAction<number>>){
         this.page = page
         this.setPage = setPage
@@ -15,10 +15,21 @@ export class AlbumManager {
         this.setSourceList = setAlbums
         this.goToNextPage = this.goToNextPage.bind(this)
         this.goToPreviousPage = this.goToPreviousPage.bind(this)
+        this.streamNextPage = this.streamNextPage.bind(this)
+    }
+    get hasMore() : boolean{
+        return !this.isLastPage
+    }
+    streamNextPage() : void{
+        setTimeout(()=>{
+            this.setPage(this.page + 1)
+        },1000)
     }
     getPage() : SimpleAlbum[]{
-        const startIndex : number = this.page * this.pageSize
-        const endIndex : number = startIndex + this.pageSize
+        const startingPage = Math.max(this.page-1, 0)
+        const startIndex : number = startingPage * this.pageSize
+        const actualPageSize = this.page == 0 ? this.pageSize : 2 * this.pageSize
+        const endIndex : number = startIndex + actualPageSize
         return this.sourceList.slice(startIndex, endIndex)
     }
     getNumberOfPages() : number {

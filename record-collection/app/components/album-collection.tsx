@@ -1,3 +1,5 @@
+import InfiniteScroll from 'react-infinite-scroll-component'
+
 import React from "react"
 
 import Image from "next/image"
@@ -14,22 +16,37 @@ export type SimpleAlbum = {
     rating?: 1|2|3|4|5
 }
 export type AlbumCollectionProps = {
-    albums: SimpleAlbum[]
+    albums: SimpleAlbum[],
+    nextPage: ()=>void,
+    hasMore: boolean,
+
 }
 export function AlbumCollection(props : AlbumCollectionProps){
     const {albums} = props
     return (
-        <ul className="album-list">
-            {
-                albums.map((album:SimpleAlbum)=>{
-                    return <Album key={album.name}
-                        name={album.name} 
-                        rating={album.rating}
-                        artist={album.artists[0]}
-                        image={album.images[0].url}
-                    />
-                })
-            }
+        <ul className="album-list" id="album-list">
+            <InfiniteScroll
+                dataLength={props.albums.length}
+                next={props.nextPage}
+                style={{ display: 'flex', flexDirection: 'column' }} //To put endMessage and loader to the top.
+                inverse={true} //
+                hasMore={props.hasMore}
+                loader={<h4>Loading...</h4>}
+                scrollableTarget="album-list"
+                onScroll={()=>{console.log("Scroll detected")}}
+                // scrollThreshold={"800px"}
+            >
+                {
+                    albums.map((album:SimpleAlbum)=>{
+                        return <Album key={album.name}
+                            name={album.name} 
+                            rating={album.rating}
+                            artist={album.artists[0]}
+                            image={album.images[0].url}
+                        />
+                    })
+                }
+            </InfiniteScroll>
         </ul>
     )
 }

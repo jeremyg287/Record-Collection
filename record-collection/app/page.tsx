@@ -7,10 +7,9 @@ import { SortByName, SortByRating } from "./components/sort-buttons";
 import { AlbumManager, useDefaultManager } from "./data/albums";
 import { PageControl } from "./components/pageControls";
 
-
 export default function App() {
   const myAlbums =  useDefaultManager()
-  const albumCollection = <AlbumCollection albums={myAlbums.getPage()}/>
+  const albumCollection = <AlbumCollection albums={myAlbums.getPage()} nextPage={myAlbums.streamNextPage} hasMore={!myAlbums.isLastPage}/>
   const albumButtons: JSX.Element[]=[
     <SortByRating key={0} data={myAlbums.sourceList} setData={myAlbums.setSourceList}/>, 
     <SortByName key={1} data={myAlbums.sourceList} setData={myAlbums.setSourceList}/>,
