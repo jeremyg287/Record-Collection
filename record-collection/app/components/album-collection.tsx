@@ -28,7 +28,7 @@ export function AlbumCollection(props : AlbumCollectionProps){
             <InfiniteScroll
                 dataLength={props.albums.length}
                 next={props.nextPage}
-                style={{ display: 'flex', flexDirection: 'column' }} //To put endMessage and loader to the top.
+                style={{ display: 'flex', flexDirection: 'row', flexGrow: 1, flexWrap: 'wrap', justifyContent: 'space-around' }} //To put endMessage and loader to the top.
                 inverse={true} //
                 hasMore={props.hasMore}
                 loader={<h4>Loading...</h4>}
@@ -64,9 +64,25 @@ function Album(props : AlbumData) {
             <div className="album-metadata">
                 <p className="album-name"> {name}</p>
                 <p className="album-artist"> {artist} </p>
-                <p className="album-rating rating-5"> {rating} </p>
+                <Rating rating={rating}></Rating>
             </div>
             <Image alt={`album cover for ${name}`} src={image} width="500" height="500" />
         </li>
+    )
+}
+function Rating(prop : {rating : number | undefined}){
+    const fillStar = <i className="fa-solid fa-star"></i>
+    const emptyStar = <i className="fa-regular fa-star"></i>
+    if(prop.rating===undefined){
+        return null
+    }
+    return (
+        <div className="album-rating">
+            {prop.rating >= 1 ? fillStar : emptyStar}
+            {prop.rating >= 2 ? fillStar : emptyStar}
+            {prop.rating >= 3 ? fillStar : emptyStar}
+            {prop.rating >= 4 ? fillStar : emptyStar}
+            {prop.rating >= 5 ? fillStar : emptyStar}
+        </div>
     )
 }
