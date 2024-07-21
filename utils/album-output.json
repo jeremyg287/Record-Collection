@@ -5816,5 +5816,36 @@
         ]
       }
     ]
+  },
+  {
+    "sourceQuery": {
+      "albumName": "Jesus Loves The Stooges",
+      "artistName": "The Stooges"
+    },
+    "results": [
+      {
+        "name": "Jesus Loves The Stooges",
+        "artists": [
+          "The Stooges"
+        ],
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b27372c688035e59a01a984008f4",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e0272c688035e59a01a984008f4",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d0000485172c688035e59a01a984008f4",
+            "width": 64
+          }
+        ]
+      }
+    ]
   }
 ]

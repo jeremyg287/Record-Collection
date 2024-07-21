@@ -9,37 +9,22 @@ export class AlbumManager {
     sourceList: SimpleAlbum[]
     setSourceList : Dispatch<SetStateAction<SimpleAlbum[]>>
     pageSize : number = 12
-    rating : SimpleAlbum[]
-    setRating : Dispatch<SetStateAction<SimpleAlbum[]>>
     constructor(
         albums : SimpleAlbum[], 
         setAlbums : Dispatch<SetStateAction<SimpleAlbum[]>>, 
         page : number, 
         setPage: Dispatch<SetStateAction<number>>,
-        ratings : SimpleAlbum[],
-        setRating : Dispatch<SetStateAction<SimpleAlbum[]>>,
     ){
         this.page = page
         this.setPage = setPage
         this.sourceList = albums
         this.setSourceList = setAlbums
-        this.rating = ratings
-        this.setRating = setRating
-        this._addRating = this._addRating.bind(this)
         this.goToNextPage = this.goToNextPage.bind(this)
         this.goToPreviousPage = this.goToPreviousPage.bind(this)
         this.streamNextPage = this.streamNextPage.bind(this)
     }
     get hasMore() : boolean{
         return !this.isLastPage
-    }
-    _addRating(toFind : SimpleAlbum) : SimpleAlbum {
-        const result = this.rating.find((candidate)=>{
-            return candidate.name == toFind.name
-        })
-        return {
-            ...toFind, rating : result?.rating || toFind.rating
-        }
     }
     streamNextPage() : void{
         setTimeout(()=>{
@@ -52,7 +37,7 @@ export class AlbumManager {
         const actualPageSize = this.page == 0 ? this.pageSize : 2 * this.pageSize
         const endIndex : number = startIndex + actualPageSize
         const finalList = this.sourceList.slice(startIndex, endIndex)
-        return finalList.map(this._addRating)
+        return finalList
     }
     getNumberOfPages() : number {
         return Math.ceil(this.sourceList.length/this.pageSize)
@@ -75,10 +60,32 @@ export class AlbumManager {
         return this.page + 1
     }
 }
+function mergeRating(sourceData : SimpleAlbum[], ratingData : SimpleAlbum[]) : SimpleAlbum[]{
+    const ratingLookup : {[albumKey: string] : number|undefined}= {}
+
+    function getAlbumKey(album : SimpleAlbum) : string{
+        return album.name
+    }
+    for(const rating of ratingData){
+        ratingLookup[getAlbumKey(rating)] = rating.rating
+    }
+    function addRating(sourceAlbum : SimpleAlbum) : SimpleAlbum{
+        const maybeRating = ratingLookup[getAlbumKey(sourceAlbum)]
+        if(maybeRating == undefined){
+            return sourceAlbum
+        }
+        return {
+            ...sourceAlbum,
+            rating: maybeRating
+        }
+    }
+    return sourceData.map(addRating)
+}
+
 export function useDefaultManager() : AlbumManager{
-    const [albums, setAlbums] = useState (albumData as SimpleAlbum[])
-    const [ratings, setRatings] = useState (albumRating as SimpleAlbum[])
+    const mergedData = mergeRating(albumData as SimpleAlbum[], albumRating as SimpleAlbum[])
+    const [albums, setAlbums] = useState (mergedData)
     const [page, setPage] = useState(0)
-    return new AlbumManager(albums, setAlbums, page, setPage, ratings, setRatings)
+    return new AlbumManager(albums, setAlbums, page, setPage)
 }
 

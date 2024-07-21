@@ -20,6 +20,7 @@ export function SortByRating (props : SortProps<SimpleAlbum>) : JSX.Element {
                 return (b.rating??0) - (a.rating??0)
             }
         })
+        console.log(sortedData)
         setSortDirection(!sortDirection)
         props.setData(sortedData)
     }

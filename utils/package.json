@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "ts-node main.ts"
+    "main": "ts-node main.ts"
   },
   "author": "",
   "license": "ISC",

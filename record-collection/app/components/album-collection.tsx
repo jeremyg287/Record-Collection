@@ -13,7 +13,7 @@ export type SimpleAlbum = {
     name: string,
     artists: string[],
     images: ImageObject[],
-    rating?: 1|2|3|4|5
+    rating?: number
 }
 export type AlbumCollectionProps = {
     albums: SimpleAlbum[],
@@ -52,7 +52,7 @@ export function AlbumCollection(props : AlbumCollectionProps){
 }
 export type AlbumData = {
     name: string,
-    rating?: 1 | 2 | 3 | 4 | 5,
+    rating?: number,
     artist: string,
     image: string,
     asdf?: string,
