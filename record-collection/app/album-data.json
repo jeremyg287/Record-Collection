@@ -2622,5 +2622,51 @@
         "width": 64
       }
     ]
+  },
+  {
+    "name": "Los Valientes del Mundo Nuevo",
+    "artists": [
+      "Black Lips"
+    ],
+    "images": [
+      {
+        "height": 640,
+        "url": "https://i.scdn.co/image/ab67616d0000b2734425b3ec07f76842b84ec408",
+        "width": 640
+      },
+      {
+        "height": 300,
+        "url": "https://i.scdn.co/image/ab67616d00001e024425b3ec07f76842b84ec408",
+        "width": 300
+      },
+      {
+        "height": 64,
+        "url": "https://i.scdn.co/image/ab67616d000048514425b3ec07f76842b84ec408",
+        "width": 64
+      }
+    ]
+  },
+  {
+    "name": "Paranoid (Remaster)",
+    "artists": [
+      "Black Sabbath"
+    ],
+    "images": [
+      {
+        "height": 640,
+        "url": "https://i.scdn.co/image/ab67616d0000b273d5fccf9ce08b6a1e7d12a222",
+        "width": 640
+      },
+      {
+        "height": 300,
+        "url": "https://i.scdn.co/image/ab67616d00001e02d5fccf9ce08b6a1e7d12a222",
+        "width": 300
+      },
+      {
+        "height": 64,
+        "url": "https://i.scdn.co/image/ab67616d00004851d5fccf9ce08b6a1e7d12a222",
+        "width": 64
+      }
+    ]
   }
 ]

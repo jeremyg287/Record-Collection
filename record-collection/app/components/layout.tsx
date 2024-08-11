@@ -1,3 +1,5 @@
+import {Outlet, Link} from "react-router-dom"
+import { AlbumManager } from "../data/albums"
 export function Layout (props: LayoutParams){
 
     return <div className="primary-layout">
@@ -9,16 +11,14 @@ export function Layout (props: LayoutParams){
                 }
             </div>
             <div className="content">
-                {
-                    props.content
-                }
+                <Outlet context={{myAlbums:props.myAlbums}}/>
             </div>
         </div>
     </div>
 }
 export type LayoutParams = {
-    content: JSX.Element, 
     sideBarButtons: JSX.Element[],
+    myAlbums: AlbumManager
 }
 export function Header(props: any) {
     return (

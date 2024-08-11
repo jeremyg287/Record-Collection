@@ -6,10 +6,18 @@ import { useState } from "react";
 import { SortByName, SortByRating } from "./components/sort-buttons";
 import { AlbumManager, useDefaultManager } from "./data/albums";
 import { PageControl } from "./components/pageControls";
+import { createBrowserRouter, RouterProvider, useOutletContext } from "react-router-dom";
+import { Outlet, useLoaderData } from "react-router-dom";
 
-export default function App() {
-  const myAlbums =  useDefaultManager()
+export function AlbumsPage(){
+  const {myAlbums} = useOutletContext<{myAlbums:AlbumManager}>()
   const albumCollection = <AlbumCollection albums={myAlbums.getPage()} nextPage={myAlbums.streamNextPage} hasMore={!myAlbums.isLastPage}/>
+
+  return albumCollection
+}
+
+export function App() {
+  const myAlbums : AlbumManager =  useDefaultManager() as AlbumManager
   const albumButtons: JSX.Element[]=[
     <SortByRating key={0} data={myAlbums.sourceList} setData={myAlbums.setSourceList}/>, 
     <SortByName key={1} data={myAlbums.sourceList} setData={myAlbums.setSourceList}/>,
@@ -25,6 +33,29 @@ export default function App() {
 
   ]
   return (<main>
-    <Layout content={albumCollection} sideBarButtons={albumButtons}/>
+    <Layout sideBarButtons={albumButtons} myAlbums={myAlbums}/>
+  </main> );
+}
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App></App>,
+    children: [
+      {
+        index: true,
+        element: <AlbumsPage/>
+      },
+      {
+        path: "albums/",
+        element: <AlbumsPage/>
+      },
+    ]
+  },
+]);
+
+export default function Routing(){
+  return (<main>
+    <RouterProvider router={router}/>
   </main> );
 }
