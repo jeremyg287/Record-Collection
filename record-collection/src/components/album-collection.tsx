@@ -2,7 +2,6 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 import React from "react"
 
-import Image from "next/image"
 
 export type ImageObject = {
     url: string,
@@ -66,7 +65,7 @@ function Album(props : AlbumData) {
                 <p className="album-artist"> {artist} </p>
                 <Rating rating={rating}></Rating>
             </div>
-            <Image alt={`album cover for ${name}`} src={image} width="500" height="500" />
+            <img alt={`album cover for ${name}`} src={image} width="500" height="500" />
         </li>
     )
 }

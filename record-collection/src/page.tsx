@@ -1,5 +1,4 @@
 "use client"
-import Image from "next/image";
 import { AlbumCollection, AlbumData, SimpleAlbum, } from "./components/album-collection";
 import { Layout } from "./components/layout";
 import { useState } from "react";
