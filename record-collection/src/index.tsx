@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import "./globals.css";
+import "../fontAwesome/css/fontawesome.css"
+import "../fontAwesome/css/solid.css"
+import "../fontAwesome/css/regular.css"
 import App from './page';
 import reportWebVitals from './reportWebVitals';
 
