@@ -128,15 +128,16 @@ button {
   z-index: 1000;
 }
 
-.hz-buttons button {
+.hz-buttons > * {
   border: 1px solid black;
   color: black;
   padding: 10px 24px; /* Some padding */
   cursor: pointer; /* Pointer/hand icon */
   float: left; /* Float the buttons side by side */
   background-color:#85afecfa; 
+  text-decoration: none;
 }
-.hz-buttons button:not(:last-child) {
+.hz-buttons > *:not(:last-child) {
   border-right: none; /* Prevent double borders */
 }
 

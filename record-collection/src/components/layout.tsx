@@ -26,12 +26,8 @@ export function Header(props: any) {
 
            <h1>Jeremy&apos;s Record Collection</h1>
             <div className="hz-buttons">
-                <button type="button">
-                    Artists
-                </button>
-                <button type="button">
-                    Albums
-                </button>
+                <Link to="/artists">Artists</Link>
+                <Link to="/albums">Albums</Link>
             </div>
         </div>
     )

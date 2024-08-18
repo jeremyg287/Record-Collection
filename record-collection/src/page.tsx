@@ -3,10 +3,12 @@ import { AlbumCollection, AlbumData, SimpleAlbum, } from "./components/album-col
 import { Layout } from "./components/layout";
 import { useState } from "react";
 import { SortByName, SortByRating } from "./components/sort-buttons";
-import { AlbumManager, useDefaultManager } from "./data/albums";
+import { AlbumManager } from "./data/albums";
 import { PageControl } from "./components/pageControls";
 import { createBrowserRouter, RouterProvider, useOutletContext } from "react-router-dom";
 import { Outlet, useLoaderData } from "react-router-dom";
+import { ArtistCollection } from "./components/artist-collection";
+import { Managers, useDefaultManagers } from "./data/managers";
 
 export function AlbumsPage(){
   const {myAlbums} = useOutletContext<{myAlbums:AlbumManager}>()
@@ -14,9 +16,16 @@ export function AlbumsPage(){
 
   return albumCollection
 }
+export function ArtistsPage(){
+  // const {myAlbums} = useOutletContext<{myAlbums:AlbumManager}>()
+  const artistCollection = <ArtistCollection />
+
+  return artistCollection
+}
 
 export function App() {
-  const myAlbums : AlbumManager =  useDefaultManager() as AlbumManager
+  const managers : Managers =  useDefaultManagers() as Managers
+  const myAlbums = managers.AlbumManager
   const albumButtons: JSX.Element[]=[
     <SortByRating key={0} data={myAlbums.sourceList} setData={myAlbums.setSourceList}/>, 
     <SortByName key={1} data={myAlbums.sourceList} setData={myAlbums.setSourceList}/>,
@@ -48,6 +57,10 @@ const router = createBrowserRouter([
       {
         path: "albums/",
         element: <AlbumsPage/>
+      },
+      {
+        path: "artists/",
+        element: <ArtistsPage/>
       },
     ]
   },

@@ -1,15 +1,16 @@
 import { SimpleAlbum } from "../components/album-collection"
 import { Dispatch, SetStateAction, useState } from "react";
+import { SimpleArtist } from "../components/artist-collection";
 
-export class AlbumManager {
+export class ArtistManager {
     page : number 
     setPage: Dispatch<SetStateAction<number>>
-    sourceList: SimpleAlbum[]
-    setSourceList : Dispatch<SetStateAction<SimpleAlbum[]>>
+    sourceList: SimpleArtist[]
+    setSourceList : Dispatch<SetStateAction<SimpleArtist[]>>
     pageSize : number = 12
     constructor(
-        albums : SimpleAlbum[], 
-        setAlbums : Dispatch<SetStateAction<SimpleAlbum[]>>, 
+        albums : SimpleArtist[], 
+        setAlbums : Dispatch<SetStateAction<SimpleArtist[]>>, 
         page : number, 
         setPage: Dispatch<SetStateAction<number>>,
     ){
@@ -29,7 +30,7 @@ export class AlbumManager {
             this.setPage(this.page + 1)
         },1000)
     }
-    getPage() : SimpleAlbum[]{
+    getPage() : SimpleArtist[]{
         const startingPage = Math.max(this.page-1, 0)
         const startIndex : number = startingPage * this.pageSize
         const actualPageSize = this.page == 0 ? this.pageSize : 2 * this.pageSize
@@ -58,4 +59,3 @@ export class AlbumManager {
         return this.page + 1
     }
 }
-
